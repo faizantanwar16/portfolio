@@ -150,3 +150,24 @@ html { scroll-behavior: smooth; }
 @keyframes mq { to { transform: translateX(-50%); } }
 .links a:hover { box-shadow: 5px 5px 0 var(--ink); }
 @media (prefers-reduced-motion: reduce) { .marq div, .caret { animation: none; } }
+
+/* pixel avatar */
+.avatar-wrap { position: relative; flex: none; padding-top: 52px; }
+.avatar { width: 190px; height: 237px; cursor: pointer; }
+.avatar svg { width: 100%; height: 100%; overflow: visible; shape-rendering: crispEdges; }
+.idle { animation: idle 3.2s ease-in-out infinite; }
+@keyframes idle { 50% { transform: translateY(-.5px); } }
+.head { transform-box: view-box; transform-origin: 12px 19px; animation: sway 5s ease-in-out infinite; }
+@keyframes sway { 0%, 100% { transform: rotate(-1.2deg); } 50% { transform: rotate(1.2deg); } }
+.pupils { transition: transform .12s ease-out; }
+.lid { transform-box: fill-box; transform-origin: top; transform: scaleY(0); animation: blink 4.2s infinite; }
+@keyframes blink { 0%, 93%, 100% { transform: scaleY(0); } 96% { transform: scaleY(1); } }
+.arm-r { transform-box: view-box; transform-origin: 22.5px 21px; animation: wave 2.6s 1.6s 1 ease-in-out; }
+.avatar:hover .arm-r { animation: wave 1.3s infinite ease-in-out; }
+@keyframes wave { 0%, 100% { transform: rotate(0); } 15%, 45%, 75% { transform: rotate(-150deg); } 30%, 60% { transform: rotate(-176deg); } }
+.bubble { position: absolute; top: 0; left: 6px; max-width: 200px; padding: 4px 12px; background: #fff; border: 3px solid var(--ink);
+  border-radius: 10px; font-family: var(--hand); font-size: 1.35rem; line-height: 1.1; animation: pop .3s ease-out; }
+.bubble::after { content: ''; position: absolute; left: 28px; bottom: -11px; width: 14px; height: 14px; background: #fff;
+  border: 0 solid var(--ink); border-width: 0 3px 3px 0; transform: rotate(45deg); }
+@keyframes pop { from { transform: scale(.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .idle, .head, .lid, .arm-r, .bubble { animation: none; } }
