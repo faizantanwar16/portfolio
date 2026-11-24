@@ -1,4 +1,5 @@
 import { motion, useScroll } from 'framer-motion';
+import Avatar from './Avatar';
 import { PixelFX, Decode, Typer, Tilt, Mag, Count, Floaters } from './fx';
 import { skills } from './data';
 import { about, education, stats, achievements, cases } from './os/content';
@@ -57,7 +58,7 @@ export default function Site() {
           <Drop>
             <Panel title="about_me.exe">
               <div className="card">
-                <Tilt><div className="photo" data-hot>your photo<br />goes here</div></Tilt>
+                <Avatar />
                 <div>
                   <h1><span className="hl"><Decode text="Faizan Tanwar" /></span></h1>
                   <p className="role"><Typer lines={['Full-stack developer, MERN + TypeScript', 'SIH 2025 National Finalist', 'Builds AI-powered web apps']} /></p>
