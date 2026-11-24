@@ -128,3 +128,25 @@ html { scroll-behavior: smooth; }
   .two, .case { grid-template-columns: 1fr; }
   .topbar { padding: 10px 14px; } .topbar nav { gap: 4px 12px; }
 }
+
+/* extra motion */
+.site-wrap { position: relative; overflow-x: clip; }
+.site { position: relative; z-index: 1; }
+.pixfx { position: fixed; inset: 0; pointer-events: none; z-index: 99998; }
+.floaters { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.fl { position: absolute; top: 0; opacity: .3; border: 3px solid var(--ink); }
+.fl.ci { border-radius: 50%; }
+.fl.tri { border: 0; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.dec { position: relative; display: inline-block; }
+.dec .ghost { opacity: 0; }
+.dec .live { position: absolute; left: 0; top: 0; white-space: nowrap; }
+.caret { display: inline-block; width: .55em; height: 1em; margin-left: 3px; vertical-align: -.12em; background: var(--pen); animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.marq { width: 100vw; margin: 0 0 96px calc(50% - 50vw); overflow: hidden; transform: rotate(-1.4deg); background: var(--hi);
+  border-block: 3px solid var(--ink); box-shadow: 0 6px 0 #000; }
+.marq div { display: flex; gap: 40px; width: max-content; padding: 14px 0; animation: mq 32s linear infinite;
+  font-family: var(--pixel); font-size: 1rem; font-weight: 700; white-space: nowrap; }
+.marq:hover div { animation-play-state: paused; }
+@keyframes mq { to { transform: translateX(-50%); } }
+.links a:hover { box-shadow: 5px 5px 0 var(--ink); }
+@media (prefers-reduced-motion: reduce) { .marq div, .caret { animation: none; } }

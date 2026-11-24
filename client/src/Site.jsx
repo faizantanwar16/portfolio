@@ -1,4 +1,5 @@
 import { motion, useScroll } from 'framer-motion';
+import { PixelFX, Decode, Typer, Tilt, Mag, Count, Floaters } from './fx';
 import { skills } from './data';
 import { about, education, stats, achievements, cases } from './os/content';
 import { lab } from './os/repos';
@@ -33,8 +34,8 @@ function Panel({ title, children }) {
 const Tags = ({ tags }) => <p className="tags">{tags.map((t) => <span key={t}>{t}</span>)}</p>;
 const Links = ({ p }) => (
   <p className="links">
-    <a href={p.github} target="_blank" rel="noreferrer">GitHub</a>
-    {p.live && <a href={p.live} target="_blank" rel="noreferrer">Live demo</a>}
+    <Mag href={p.github} target="_blank" rel="noreferrer">GitHub</Mag>
+    {p.live && <Mag href={p.live} target="_blank" rel="noreferrer">Live demo</Mag>}
   </p>
 );
 
@@ -43,6 +44,8 @@ export default function Site() {
   const cats = [...new Set(skills.map((s) => s.category))];
   return (
     <div className="site-wrap">
+      <Floaters />
+      <PixelFX />
       <header className="topbar">
         <a href="#top" className="brand">faizan.os</a>
         <nav>{nav.map(([id, l]) => <a key={id} href={`#${id}`}>{l}</a>)}</nav>
@@ -54,21 +57,23 @@ export default function Site() {
           <Drop>
             <Panel title="about_me.exe">
               <div className="card">
-                <div className="photo" data-hot>your photo<br />goes here</div>
+                <Tilt><div className="photo" data-hot>your photo<br />goes here</div></Tilt>
                 <div>
-                  <h1><span className="hl">Faizan Tanwar</span></h1>
-                  <p className="role">Full-stack developer, MERN + TypeScript</p>
+                  <h1><span className="hl"><Decode text="Faizan Tanwar" /></span></h1>
+                  <p className="role"><Typer lines={['Full-stack developer, MERN + TypeScript', 'SIH 2025 National Finalist', 'Builds AI-powered web apps']} /></p>
                   <p className="meta">Computer Engineering student, graduating 2027. SIH 2025 National Finalist.</p>
                   <p className="note">Hiring interns? <span className="circle">Say hi</span></p>
-                  <p className="links"><a href="#projects">See my work</a><a href="/Faizan_Tanwar_Resume.pdf" target="_blank" rel="noreferrer">Resume (PDF)</a></p>
+                  <p className="links"><Mag href="#projects">See my work</Mag><Mag href="/Faizan_Tanwar_Resume.pdf" target="_blank" rel="noreferrer">Resume (PDF)</Mag></p>
                 </div>
               </div>
             </Panel>
           </Drop>
           <div className="stats">
-            {stats.map(([n, l], i) => <Drop key={l} i={i}><div className="sticky"><b>{n}</b>{l}</div></Drop>)}
+            {stats.map(([n, l], i) => <Drop key={l} i={i}><Tilt><div className="sticky"><b><Count v={n} /></b>{l}</div></Tilt></Drop>)}
           </div>
         </section>
+
+        <div className="marq" aria-hidden="true"><div>{[...skills, ...skills].map((k, i) => <span key={i}>{k.name}</span>)}</div></div>
 
         <section className="block" id="about">
           <h2 className="sec">Who I am</h2>
@@ -89,7 +94,7 @@ export default function Site() {
           <h2 className="sec">Achievements</h2>
           <div className="two">
             {achievements.map(([t, d], i) => (
-              <Drop key={t} i={i}><div className="ticket"><h3>{t}</h3><p>{d}</p></div></Drop>
+              <Drop key={t} i={i}><Tilt><div className="ticket"><h3>{t}</h3><p>{d}</p></div></Tilt></Drop>
             ))}
           </div>
         </section>
@@ -150,9 +155,9 @@ export default function Site() {
             <Panel title="contact.txt">
               <p className="note big-note">Open to internships. Let's talk.</p>
               <p className="links">
-                <a href="https://github.com/faizantanwar16" target="_blank" rel="noreferrer">GitHub</a>
-                <a href="https://linkedin.com/in/faizan-tanwar" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a href="/Faizan_Tanwar_Resume.pdf" target="_blank" rel="noreferrer">Resume (PDF)</a>
+                <Mag href="https://github.com/faizantanwar16" target="_blank" rel="noreferrer">GitHub</Mag>
+                <Mag href="https://linkedin.com/in/faizan-tanwar" target="_blank" rel="noreferrer">LinkedIn</Mag>
+                <Mag href="/Faizan_Tanwar_Resume.pdf" target="_blank" rel="noreferrer">Resume (PDF)</Mag>
               </p>
             </Panel>
           </Drop>
