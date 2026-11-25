@@ -171,3 +171,58 @@ html { scroll-behavior: smooth; }
   border: 0 solid var(--ink); border-width: 0 3px 3px 0; transform: rotate(45deg); }
 @keyframes pop { from { transform: scale(.6); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .idle, .head, .lid, .arm-r, .bubble { animation: none; } }
+
+/* batch A: nav, boot, hero, featured, modal, terminal */
+.boot { flex-direction: column; }
+.boot-lines { text-align: left; }
+.boot-lines p { font-size: .85rem; margin-bottom: 10px; animation: pop .25s ease-out; }
+.skip { margin-top: 28px; padding: 6px 14px; border: 2px solid #fff; color: #fff; font-family: var(--pixel); font-size: .7rem; }
+.skip:hover { background: var(--hi); color: var(--ink); }
+.topbar nav a { padding: 4px 2px; border-bottom: 3px solid transparent; }
+.topbar nav a.on { color: var(--hi); border-bottom-color: var(--hi); }
+.tbtn { padding: 5px 10px; border: 2px solid #fff; color: #fff; font-family: var(--pixel); font-size: .75rem; }
+.tbtn:hover { background: var(--hi); color: var(--ink); }
+.burger { display: none; }
+.herocard { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.herotxt { max-width: 560px; }
+.herocard .avatar { width: 250px; height: 312px; }
+.headline { font-size: clamp(1.25rem, 3vw, 1.7rem); font-weight: 800; line-height: 1.2; margin-top: 4px; }
+.avail { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; padding: 4px 12px; border: 2px solid var(--ink);
+  border-radius: 20px; font-family: var(--pixel); font-size: .65rem; background: #fff; }
+.avail i { width: 9px; height: 9px; border-radius: 50%; background: #28c840; animation: pulse 1.8s infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 6px rgba(40,200,64,0); } 0% { box-shadow: 0 0 0 0 rgba(40,200,64,.6); } }
+.links a.alt { background: var(--paper); color: var(--ink); }
+.marq { transform: none; background: transparent; box-shadow: none; border-block: 2px solid rgba(255,255,255,.18); margin-bottom: 80px; }
+.marq div { color: rgba(255,255,255,.55); font-size: .8rem; font-weight: 400; padding: 12px 0; }
+.featgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.featgrid > :first-child { grid-column: 1 / -1; }
+.feat { position: relative; cursor: pointer; transition: transform .25s, box-shadow .25s; }
+.feat:hover { transform: translateY(-6px); box-shadow: 7px 7px 0 #000, 0 0 0 3px var(--hi); }
+.feat .win-bar { transition: background .25s; } .feat:hover .win-bar { background: #5a5fd0; }
+.peek { max-height: 0; overflow: hidden; opacity: 0; padding-left: 20px; line-height: 1.45; transition: max-height .35s, opacity .35s, margin .35s; }
+.feat:hover .peek, .feat:focus-within .peek { max-height: 140px; opacity: 1; margin-top: 12px; }
+.featrow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; }
+.more { padding: 6px 14px; border: 2px solid var(--ink); border-radius: 6px; background: var(--hi); font-family: var(--pixel); font-size: .7rem; box-shadow: 3px 3px 0 var(--ink); }
+.more.big { margin-bottom: 24px; padding: 10px 20px; font-size: .8rem; }
+.arch { padding-top: 4px; padding-bottom: 8px; }
+.overlay { position: fixed; inset: 0; z-index: 99990; display: grid; place-items: center; padding: 16px; background: rgba(10,9,16,.72); }
+.overlay .win { position: relative; width: min(680px, 100%); max-height: 88vh; overflow: auto; }
+.term { background: #15131f; border-color: var(--hi); color: #e9e6d8; }
+.term .win-body, .term-out { font-family: ui-monospace, Consolas, monospace; }
+.term-out { height: min(420px, 60vh); overflow: auto; padding: 16px; font-size: .95rem; line-height: 1.5; }
+.term-out p { white-space: pre-wrap; word-break: break-word; margin: 0; }
+.term-out .in { color: var(--hi); }
+.term-row { display: flex; gap: 8px; margin-top: 4px; }
+.term-row input { flex: 1; min-width: 0; background: none; border: 0; color: #fff; font: inherit; outline: none; }
+.sec.dark { color: var(--ink); margin-bottom: 12px; }
+.contact .links a { font-size: .85rem; padding: 10px 18px; }
+@media (max-width: 760px) {
+  .burger { display: block; }
+  .topbar { flex-wrap: wrap; }
+  .topbar nav { display: none; order: 5; width: 100%; flex-direction: column; padding-top: 8px; }
+  .topbar nav.open { display: flex; }
+  .herocard { flex-direction: column-reverse; align-items: flex-start; }
+  .herocard .avatar { width: 200px; height: 250px; align-self: center; }
+  .featgrid { grid-template-columns: 1fr; }
+  .peek { max-height: 140px; opacity: 1; margin-top: 12px; }
+}
